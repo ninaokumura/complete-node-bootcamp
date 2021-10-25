@@ -3,6 +3,9 @@ const fs = require('fs');
 const http = require('http');
 const url = require('url');
 
+// Importing our modules
+const replaceTemplate = require('./modules/replaceTemplate');
+
 //////////////////////////////////////////////////////////////////////
 //Files
 
@@ -37,21 +40,6 @@ console.log('Will read file!');
 */
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Creating a web server
-const replaceTemplate = (temp, product) => {
-  let output = temp.replace(/{%PRODUCTNAME%}/g, product.productName);
-  output = output.replace(/{%IMAGE%}/g, product.image);
-  output = output.replace(/{%PRICE%}/g, product.price);
-  output = output.replace(/{%FROM%}/g, product.from);
-  output = output.replace(/{%NUTRIENTS%}/g, product.nutrients);
-  output = output.replace(/{%QUANTITY%}/g, product.quantity);
-  output = output.replace(/{%DESCRIPTION%}/g, product.description);
-  output = output.replace(/{%ID%}/g, product.id);
-
-  if (!product.organic)
-    output = output.replace(/{%NOT_ORGANIC%}/g, 'not-organic');
-  return output;
-};
-// The top level code wuill only be executed once we start the program. So we can use the sync version...
 
 const tempOverview = fs.readFileSync(
   `${__dirname}/templates/template-overview.html`,
