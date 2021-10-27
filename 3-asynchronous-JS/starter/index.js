@@ -6,12 +6,16 @@ fs.readFile(`${__dirname}/dog.txt`, (err, data) => {
 
   superagent
     .get(`https://dog.ceo/api/breed/${data}/images/random`)
-    .end((err, res) => {
-      if (err) return console.log(err.message);
+    .then((res) => {
       console.log(res.body.message);
 
-      fs.writeFile("god-img.txt", res.body.message, (err) => {
+      fs.writeFile("dog-img.txt", res.body.message, (err) => {
         console.log("Random dog image saved to file!");
       });
+    })
+    .catch((err) => {
+      console.log(err.message);
     });
 });
+
+// How to solve callback hell using promises
