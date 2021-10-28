@@ -48,8 +48,4 @@ app.delete('/api/v1/tours/:id', deleteTour);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 
-// Start the server
-const port = 8000;
-app.listen(port, () => {
-  console.log(`App running on port ${port}...`);
-});
+module.exports = app;
