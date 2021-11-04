@@ -1,5 +1,7 @@
 const fs = require('fs');
-
+const http = require('http');
+//////////////////////////////////////////////////
+// Files
 /*
 //Reading and writing files => blocking sync
 const textIn = fs.readFileSync('./txt/input.txt', 'utf-8');
@@ -9,8 +11,10 @@ const textOut = `This is what we know about the avocado: ${textIn}.\nCreated on 
 fs.writeFileSync('./txt/output.txt', textOut);
 console.log('File written!');
 */
+/*
 // Reading and writing files async way => non-blocking async
 fs.readFile('./txt/start.txt', 'utf-8', (err, data1) => {
+  if (err) return console.log('Error! 💥');
   fs.readFile(`./txt/${data1}.txt`, 'utf-8', (err, data2) => {
     console.log(data2);
     fs.readFile('./txt/append.txt', 'utf-8', (err, data3) => {
@@ -23,3 +27,14 @@ fs.readFile('./txt/start.txt', 'utf-8', (err, data1) => {
   });
 });
 console.log('Will read file!');
+*/
+////////////////////////////////////////////////////////////////
+//Server
+
+const server = http.createServer((req, res) => {
+  res.end('Hello from the server!');
+});
+
+server.listen(8000, '127.0.0.1', () => {
+  console.log('Listening to requests on port 8000');
+});
